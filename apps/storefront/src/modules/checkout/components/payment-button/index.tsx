@@ -1,10 +1,11 @@
 "use client"
 
-import { isManual, isStripeLike } from "@lib/constants"
+import { isManual, isPaypal, isStripeLike } from "@lib/constants"
 import { placeOrder } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
 import { Button } from "@modules/common/components/ui"
 import { useElements, useStripe } from "@stripe/react-stripe-js"
+import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js"
 import React, { useState } from "react"
 import ErrorMessage from "../error-message"
 
@@ -39,6 +40,8 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
       return (
         <ManualTestPaymentButton notReady={notReady} data-testid={dataTestId} />
       )
+    case isPaypal(paymentSession?.provider_id):
+      return <PayPalPaymentButton notReady={notReady} cart={cart} />
     default:
       return <Button disabled>Select a payment method</Button>
   }
@@ -185,6 +188,57 @@ const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
       <ErrorMessage
         error={errorMessage}
         data-testid="manual-payment-error-message"
+      />
+    </>
+  )
+}
+
+const PayPalPaymentButton = ({
+  cart,
+  notReady,
+}: {
+  cart: HttpTypes.StoreCart
+  notReady: boolean
+}) => {
+  const [submitting, setSubmitting] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [{ isPending }] = usePayPalScriptReducer()
+
+  const session = cart.payment_collection?.payment_sessions?.find(
+    (s) => s.status === "pending"
+  )
+
+  const onPaymentCompleted = async () => {
+    await placeOrder()
+      .catch((err) => {
+        setErrorMessage(err.message)
+      })
+      .finally(() => {
+        setSubmitting(false)
+      })
+  }
+
+  if (notReady || !session) {
+    return <Button disabled>Select a payment method</Button>
+  }
+
+  return (
+    <>
+      <PayPalButtons
+        style={{ layout: "horizontal" }}
+        createOrder={async () => (session.data as { id: string }).id}
+        onApprove={async () => {
+          setSubmitting(true)
+          await onPaymentCompleted()
+        }}
+        onError={() =>
+          setErrorMessage("An error occurred with PayPal. Please try again.")
+        }
+        disabled={notReady || isPending || submitting}
+      />
+      <ErrorMessage
+        error={errorMessage}
+        data-testid="paypal-payment-error-message"
       />
     </>
   )

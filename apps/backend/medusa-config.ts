@@ -7,6 +7,27 @@ loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 // local development works without cloud services configured.
 const hasR2 = !!process.env.R2_BUCKET && !!process.env.R2_ACCESS_KEY_ID
 const hasResend = !!process.env.RESEND_API_KEY
+const hasPaypal = !!process.env.PAYPAL_CLIENT_ID && !!process.env.PAYPAL_CLIENT_SECRET
+
+const paymentProviders: any[] = [
+  {
+    resolve: "./src/providers/zelle-payment",
+    id: "zelle",
+    options: {},
+  },
+]
+
+if (hasPaypal) {
+  paymentProviders.push({
+    resolve: "./src/providers/paypal-payment",
+    id: "paypal",
+    options: {
+      client_id: process.env.PAYPAL_CLIENT_ID,
+      client_secret: process.env.PAYPAL_CLIENT_SECRET,
+      environment: process.env.PAYPAL_ENVIRONMENT || "sandbox",
+    },
+  })
+}
 
 const modules: any[] = [
   {
@@ -16,13 +37,7 @@ const modules: any[] = [
   {
     resolve: "@medusajs/medusa/payment",
     options: {
-      providers: [
-        {
-          resolve: "./src/providers/zelle-payment",
-          id: "zelle",
-          options: {},
-        },
-      ],
+      providers: paymentProviders,
     },
   },
 ]

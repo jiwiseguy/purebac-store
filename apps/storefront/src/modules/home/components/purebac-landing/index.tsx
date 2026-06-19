@@ -66,7 +66,7 @@ const PureBacLanding = ({ products }: Props) => {
           {sorted.map((p) => {
             const popular = p.handle === "bac-water-30ml"
             const price = money(
-              p.variants?.[0]?.calculated_price?.calculated_amount,
+              p.variants?.[0]?.calculated_price?.calculated_amount ?? undefined,
               p.variants?.[0]?.calculated_price?.currency_code?.toUpperCase()
             )
             return (

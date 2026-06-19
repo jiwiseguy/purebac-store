@@ -3,8 +3,9 @@
 import { loadStripe } from "@stripe/stripe-js"
 import React from "react"
 import StripeWrapper from "./stripe-wrapper"
+import { PayPalScriptProvider } from "@paypal/react-paypal-js"
 import { HttpTypes } from "@medusajs/types"
-import { isStripeLike } from "@lib/constants"
+import { isPaypal, isStripeLike } from "@lib/constants"
 
 type PaymentWrapperProps = {
   cart: HttpTypes.StoreCart
@@ -22,6 +23,8 @@ const stripePromise = stripeKey
       medusaAccountId ? { stripeAccount: medusaAccountId } : undefined
     )
   : null
+
+const paypalClientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID
 
 const PaymentWrapper: React.FC<PaymentWrapperProps> = ({ cart, children }) => {
   const paymentSession = cart.payment_collection?.payment_sessions?.find(
@@ -41,6 +44,21 @@ const PaymentWrapper: React.FC<PaymentWrapperProps> = ({ cart, children }) => {
       >
         {children}
       </StripeWrapper>
+    )
+  }
+
+  if (isPaypal(paymentSession?.provider_id) && paypalClientId && cart?.region) {
+    return (
+      <PayPalScriptProvider
+        options={{
+          clientId: paypalClientId,
+          currency: cart.region.currency_code.toUpperCase(),
+          intent: "capture",
+          components: "buttons",
+        }}
+      >
+        {children}
+      </PayPalScriptProvider>
     )
   }
 
