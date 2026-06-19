@@ -46,7 +46,7 @@ export default async function seed_products({
     entity: "region",
     fields: ["id", "name", "currency_code"],
   })
-  let usRegion = regions.find((r: any) => r.currency_code === "usd")
+  let usRegion: any = regions.find((r: any) => r.currency_code === "usd")
   if (!usRegion) {
     logger.info("Creating United States region...")
     const { result } = await createRegionsWorkflow(container).run({
