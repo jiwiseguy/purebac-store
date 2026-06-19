@@ -10,15 +10,15 @@ const Hero = () => {
         </span>
 
         <h1 className="max-w-3xl text-4xl small:text-6xl font-semibold leading-[1.05] tracking-tight text-[#0a0a0a]">
-          Bacteriostatic Water
+          Reconstitution Water
           <br />
           <span className="text-[#1e6fbe]">You Can Trust</span>
         </h1>
 
         <p className="max-w-2xl text-base small:text-lg leading-relaxed text-[#41506a]">
           Pharmaceutical-grade sterile water with 0.9% benzyl alcohol.
-          USP-compliant, third-party lab tested, and shipped with a full
-          certificate of analysis — every order, every time.
+          USP-compliant and third-party lab tested for purity and
+          consistency — every batch, every time.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center gap-3">

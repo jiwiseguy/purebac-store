@@ -6,9 +6,9 @@ import { listProducts } from "@lib/data/products"
 import { getRegion } from "@lib/data/regions"
 
 export const metadata: Metadata = {
-  title: "PureBac — Pharmaceutical-Grade Bacteriostatic Water",
+  title: "PureBac — Pharmaceutical-Grade Reconstitution Water",
   description:
-    "USP-compliant bacteriostatic water with 0.9% benzyl alcohol. Third-party lab tested, with a certificate of analysis included in every order. Made in the USA.",
+    "USP-compliant reconstitution water with 0.9% benzyl alcohol. Third-party lab tested for purity and consistency. Made in the USA.",
 }
 
 export default async function Home(props: {

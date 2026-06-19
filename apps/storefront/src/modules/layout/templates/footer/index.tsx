@@ -16,9 +16,9 @@ export default async function Footer() {
               PureBac
             </LocalizedClientLink>
             <p className="mt-4 text-sm leading-relaxed text-[#5a6b85]">
-              Pharmaceutical-grade bacteriostatic water with 0.9% benzyl
-              alcohol. USP-compliant, third-party lab tested, and shipped with a
-              certificate of analysis in every order. Made in the USA.
+              Pharmaceutical-grade reconstitution water with 0.9% benzyl
+              alcohol. USP-compliant and third-party lab tested for purity and
+              consistency. Made in the USA.
             </p>
           </div>
 
@@ -26,7 +26,6 @@ export default async function Footer() {
             <span className="text-sm font-semibold text-[#0d1f3c]">Shop</span>
             <ul className="grid grid-cols-1 gap-2 text-sm text-[#5a6b85]">
               <li><LocalizedClientLink className="hover:text-[#1e6fbe]" href="/store">All Products</LocalizedClientLink></li>
-              <li><LocalizedClientLink className="hover:text-[#1e6fbe]" href="/products/bac-water-10ml">10 mL Vial</LocalizedClientLink></li>
               <li><LocalizedClientLink className="hover:text-[#1e6fbe]" href="/products/bac-water-30ml">30 mL Vial</LocalizedClientLink></li>
               <li><LocalizedClientLink className="hover:text-[#1e6fbe]" href="/products/bac-water-30ml-10pack">10-Pack Bundle</LocalizedClientLink></li>
             </ul>
@@ -47,7 +46,7 @@ export default async function Footer() {
           <p className="text-xs leading-relaxed text-[#6a8aaa]">
             For laboratory and research use only. Not for human or veterinary
             use, and not a drug or medical device. Statements on this site have
-            not been evaluated by the FDA. Bacteriostatic water is sold solely
+            not been evaluated by the FDA. Reconstitution water is sold solely
             as a research reagent.
           </p>
           <p className="mt-4 text-xs text-[#6a8aaa]">

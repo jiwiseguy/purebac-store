@@ -19,7 +19,7 @@ import {
 import { PRODUCT_METADATA_MODULE } from "../modules/product-metadata"
 import ProductMetadataModuleService from "../modules/product-metadata/service"
 
-const PUREBAC_HANDLES = ["bac-water-10ml", "bac-water-30ml", "bac-water-30ml-10pack"]
+const PUREBAC_HANDLES = ["bac-water-30ml", "bac-water-30ml-10pack"]
 
 export default async function seed_products({
   container,
@@ -195,10 +195,10 @@ export default async function seed_products({
     entity: "product_category",
     fields: ["id", "name"],
   })
-  let category = (existingCategories as any[]).find((c) => c.name === "Bacteriostatic Water")
+  let category = (existingCategories as any[]).find((c) => c.name === "Reconstitution Water")
   if (!category) {
     const { result } = await createProductCategoriesWorkflow(container).run({
-      input: { product_categories: [{ name: "Bacteriostatic Water", is_active: true }] },
+      input: { product_categories: [{ name: "Reconstitution Water", is_active: true }] },
     })
     category = result[0]
   }
@@ -207,27 +207,17 @@ export default async function seed_products({
   const { data: existingPb } = await query.graph({ entity: "product", fields: ["id", "handle"] })
   const existingHandles = new Set((existingPb as any[]).map((p) => p.handle))
 
+  const PRODUCT_IMAGE = "https://purebac-storefront.vercel.app/products/bio-water.png"
+
   const products = [
     {
-      title: "10 mL Bacteriostatic Water Vial",
-      handle: "bac-water-10ml",
-      category_ids: [category.id],
-      description:
-        "Pharmaceutical-grade sterile water with 0.9% benzyl alcohol. Single-cycle use or a first order to verify quality before buying in bulk. Individually sealed, sterile-filtered, and shipped with a certificate of analysis from an independent laboratory.",
-      status: ProductStatus.PUBLISHED,
-      shipping_profile_id: shippingProfile.id,
-      options: [{ title: "Size", values: ["10 mL"] }],
-      variants: [
-        { title: "10 mL", sku: "PUREBAC-10ML", options: { Size: "10 mL" }, manage_inventory: true, prices: [{ amount: 8, currency_code: "usd" }] },
-      ],
-      sales_channels: [{ id: defaultSalesChannel.id }],
-    },
-    {
-      title: "30 mL Bacteriostatic Water Vial",
+      title: "30 mL Reconstitution Water Vial",
       handle: "bac-water-30ml",
       category_ids: [category.id],
+      thumbnail: PRODUCT_IMAGE,
+      images: [{ url: PRODUCT_IMAGE }],
       description:
-        "The standard for peptide reconstitution protocols. Multi-dose rated for 28 days after opening. USP-compliant 0.9% benzyl alcohol preservative, third-party lab tested, with a full certificate of analysis included in every order.",
+        "The standard for peptide reconstitution protocols. Multi-dose rated for 28 days after opening. USP-compliant 0.9% benzyl alcohol preservative, third-party lab tested for purity and consistency.",
       status: ProductStatus.PUBLISHED,
       shipping_profile_id: shippingProfile.id,
       options: [{ title: "Size", values: ["30 mL"] }],
@@ -240,8 +230,10 @@ export default async function seed_products({
       title: "10-Pack Bundle — 30 mL Vials",
       handle: "bac-water-30ml-10pack",
       category_ids: [category.id],
+      thumbnail: PRODUCT_IMAGE,
+      images: [{ url: PRODUCT_IMAGE }],
       description:
-        "Ten 30 mL sterile vials in bulk. Best value for ongoing protocols or resellers — save $31 versus single vials. Priority shipping included. Every vial individually sealed with a certificate of analysis.",
+        "Ten 30 mL sterile vials in bulk. Best value for ongoing protocols or resellers — save $31 versus single vials. Priority shipping included. Every vial individually sealed and third-party lab tested.",
       status: ProductStatus.PUBLISHED,
       shipping_profile_id: shippingProfile.id,
       options: [{ title: "Size", values: ["10 × 30 mL"] }],
@@ -307,7 +299,6 @@ export default async function seed_products({
     testing_lab: "Vanguard Laboratory (independent, third-party)",
   }
   const fillByHandle: Record<string, string> = {
-    "bac-water-10ml": "10 mL per vial",
     "bac-water-30ml": "30 mL per vial",
     "bac-water-30ml-10pack": "10 × 30 mL vials",
   }

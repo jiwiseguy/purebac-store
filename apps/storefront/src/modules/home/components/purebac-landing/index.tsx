@@ -11,22 +11,17 @@ const money = (amount?: number, currency = "USD") =>
       }).format(amount)
 
 const BULLETS: Record<string, string[]> = {
-  "bac-water-10ml": [
-    "0.9% benzyl alcohol",
-    "Sterile flip-top cap",
-    "COA included",
-  ],
   "bac-water-30ml": [
     "0.9% benzyl alcohol",
     "30 mL multiple-use vial",
     "Safe 28 days post-open",
-    "COA included",
+    "Third-party lab tested",
   ],
   "bac-water-30ml-10pack": [
     "10 × 30 mL sterile vials",
     "Priority shipping included",
     "Lowest per-vial price",
-    "COA included",
+    "Third-party lab tested",
   ],
 }
 
@@ -46,7 +41,6 @@ const PureBacLanding = ({ products }: Props) => {
       {/* ── Trust strip ─────────────────────────────────────────── */}
       <div className="bg-[#0d1f3c] text-white">
         <div className="content-container flex flex-wrap items-center justify-center gap-x-10 gap-y-2 py-3 text-xs small:text-sm font-medium">
-          <span>✓ COA with every order</span>
           <span>✓ Third-party lab tested</span>
           <span>✓ USP-compliant · 0.9% Benzyl Alcohol</span>
           <span>✓ Made in the USA</span>
@@ -63,12 +57,12 @@ const PureBacLanding = ({ products }: Props) => {
             Choose Your Size
           </h2>
           <p className="mt-3 max-w-2xl mx-auto text-[#41506a]">
-            Every vial is individually sealed, sterile-filtered, and ships with
-            a certificate of analysis from an independent laboratory.
+            Every vial is individually sealed, sterile-filtered, and
+            third-party lab tested for purity and consistency.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
           {sorted.map((p) => {
             const popular = p.handle === "bac-water-30ml"
             const price = money(
@@ -89,8 +83,16 @@ const PureBacLanding = ({ products }: Props) => {
                     Most Popular
                   </span>
                 )}
+                <div className="mb-5 overflow-hidden rounded-xl border border-[#eef4fc] bg-[#f5f9ff]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/products/bio-water.png"
+                    alt={p.title}
+                    className="h-52 w-full object-contain"
+                  />
+                </div>
                 <h3 className="text-lg font-semibold text-[#0a0a0a]">
-                  {p.title.replace(" Bacteriostatic Water Vial", "").replace(" — 30 mL Vials", "")}
+                  {p.title.replace(" Reconstitution Water Vial", "").replace(" — 30 mL Vials", "")}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-[#5a6b85] min-h-[60px]">
                   {p.description}
@@ -139,10 +141,9 @@ const PureBacLanding = ({ products }: Props) => {
               Why Third-Party Testing Matters
             </h2>
             <p className="mt-4 text-[#41506a] leading-relaxed">
-              Anyone can print “sterile” on a label. We send every batch to{" "}
+              Anyone can print “sterile” on a label. We batch-test through{" "}
               <strong>Vanguard Laboratory</strong>, an independent third party,
-              and ship the certificate of analysis with your order — so you can
-              verify exactly what you’re putting into your protocol.
+              so you can trust exactly what you’re putting into your protocol.
             </p>
             <div className="mt-6 flex gap-3">
               <LocalizedClientLink
@@ -155,7 +156,7 @@ const PureBacLanding = ({ products }: Props) => {
           </div>
           <div className="rounded-2xl border border-[#dce8f8] bg-white p-7">
             <h3 className="text-sm font-semibold uppercase tracking-wide text-[#0d1f3c]">
-              What&apos;s in Your COA
+              What We Test For
             </h3>
             <dl className="mt-4 divide-y divide-[#eef4fc]">
               {[
@@ -219,16 +220,12 @@ const PureBacLanding = ({ products }: Props) => {
           <div className="space-y-4">
             {[
               [
-                "What is bacteriostatic water used for?",
-                "Bacteriostatic water is sterile water containing 0.9% benzyl alcohol, a preservative that inhibits bacterial growth. It is commonly used in research settings to reconstitute lyophilized (freeze-dried) compounds.",
+                "What is reconstitution water used for?",
+                "Reconstitution water is sterile water containing 0.9% benzyl alcohol, a preservative that inhibits bacterial growth. It is commonly used in research settings to reconstitute lyophilized (freeze-dried) compounds.",
               ],
               [
                 "How long is it good for after opening?",
                 "The 0.9% benzyl alcohol preservative allows a 30 mL multi-dose vial to be used safely for up to 28 days after the first puncture when stored at room temperature.",
-              ],
-              [
-                "Do you include a certificate of analysis?",
-                "Yes — every order ships with a certificate of analysis from Vanguard Laboratory, an independent third-party lab, documenting pH, sterility, endotoxins, and appearance for that batch.",
               ],
               [
                 "How is my order shipped?",
@@ -257,7 +254,7 @@ const PureBacLanding = ({ products }: Props) => {
         <div className="max-w-3xl mx-auto rounded-2xl bg-[#0d1f3c] px-8 py-12 text-center text-white">
           <h2 className="text-3xl font-semibold tracking-tight">Questions? Talk to us.</h2>
           <p className="mt-3 text-white/70">
-            Wholesale, bulk orders, or COA requests — we&apos;re happy to help.
+            Wholesale, bulk orders, or general questions — we&apos;re happy to help.
           </p>
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm">
             <a
