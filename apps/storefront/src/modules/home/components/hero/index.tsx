@@ -6,7 +6,7 @@ const Hero = () => {
       <div className="content-container flex flex-col items-center text-center py-20 small:py-28 gap-7">
         <span className="inline-flex items-center gap-2 rounded-full border border-[#cfe0f6] bg-white/80 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#1e6fbe]">
           <span className="h-1.5 w-1.5 rounded-full bg-[#1e6fbe]" />
-          Peptide-Grade · Third-Party Verified
+          USP-Compliant · Third-Party Verified
         </span>
 
         <h1 className="max-w-3xl text-4xl small:text-6xl font-semibold leading-[1.05] tracking-tight text-[#0a0a0a]">
