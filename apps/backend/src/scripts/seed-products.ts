@@ -10,6 +10,7 @@ import {
   createProductsWorkflow,
   createRegionsWorkflow,
   createShippingOptionsWorkflow,
+  createShippingProfilesWorkflow,
   createStockLocationsWorkflow,
   createTaxRegionsWorkflow,
   deleteProductsWorkflow,
@@ -98,7 +99,7 @@ export default async function seed_products({
   }
 
   // ─── Fulfillment set & US shipping option ─────────────────────────────────────
-  const { data: existingFulfillmentSets } = await query.graph({
+  let { data: fulfillmentSets } = await query.graph({
     entity: "fulfillment_set",
     fields: ["id", "name", "service_zones.id", "service_zones.name"],
   })
@@ -107,25 +108,44 @@ export default async function seed_products({
     entity: "shipping_profile",
     fields: ["id"],
   })
-  const shippingProfile = shippingProfileResult[0]
+  let shippingProfile: any = shippingProfileResult[0]
+  if (!shippingProfile) {
+    logger.info("Creating default shipping profile...")
+    const { result } = await createShippingProfilesWorkflow(container).run({
+      input: { data: [{ name: "Default", type: "default" }] },
+    })
+    shippingProfile = result[0]
+  }
 
-  if (!existingFulfillmentSets.length) {
-    logger.info("Creating US fulfillment set and shipping options...")
-    const fulfillmentSet = await fulfillmentModuleService.createFulfillmentSets({
+  if (!fulfillmentSets.length) {
+    logger.info("Creating US fulfillment set...")
+    const created = await fulfillmentModuleService.createFulfillmentSets({
       name: "US Shipping",
       type: "shipping",
       service_zones: [
         { name: "United States", geo_zones: [{ country_code: "us", type: "country" as const }] },
       ],
     })
-
     await link.create({
       [Modules.STOCK_LOCATION]: { stock_location_id: stockLocation.id },
-      [Modules.FULFILLMENT]: { fulfillment_set_id: fulfillmentSet.id },
+      [Modules.FULFILLMENT]: { fulfillment_set_id: created.id },
     })
+    // Re-query so we reliably get the persisted service-zone ids.
+    ;({ data: fulfillmentSets } = await query.graph({
+      entity: "fulfillment_set",
+      fields: ["id", "name", "service_zones.id", "service_zones.name"],
+    }))
+  }
 
-    const usZone = fulfillmentSet.service_zones.find((z: any) => z.name === "United States")!
+  const allZones = (fulfillmentSets as any[]).flatMap((fs) => fs.service_zones ?? [])
+  const usZone = allZones.find((z: any) => z.name === "United States") ?? allZones[0]
 
+  const { data: existingShippingOptions } = await query.graph({
+    entity: "shipping_option",
+    fields: ["id"],
+  })
+  if (usZone && !existingShippingOptions.length) {
+    logger.info("Creating US shipping option...")
     await createShippingOptionsWorkflow(container).run({
       input: [
         {
@@ -146,10 +166,15 @@ export default async function seed_products({
         },
       ],
     })
+  }
 
+  // Ensure the sales channel can fulfil from the stock location (safe to retry).
+  try {
     await linkSalesChannelsToStockLocationWorkflow(container).run({
       input: { id: stockLocation.id, add: [defaultSalesChannel.id] },
     })
+  } catch (e) {
+    logger.info(`SC<->location link skipped: ${(e as Error).message}`)
   }
 
   // ─── Remove demo/starter products ─────────────────────────────────────────────
