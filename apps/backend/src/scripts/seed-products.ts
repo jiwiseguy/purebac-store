@@ -217,7 +217,7 @@ export default async function seed_products({
       thumbnail: PRODUCT_IMAGE,
       images: [{ url: PRODUCT_IMAGE }],
       description:
-        "The standard for peptide reconstitution protocols. Multi-dose rated for 28 days after opening. USP-compliant 0.9% benzyl alcohol preservative, third-party lab tested for purity and consistency.",
+        "Pharmaceutical-grade reconstitution water with 0.9% benzyl alcohol — used to reconstitute peptides and proteins in research and laboratory settings. Multi-dose 30 mL vial rated for 28 days after opening. USP-compliant and third-party lab tested for purity and consistency.",
       status: ProductStatus.PUBLISHED,
       shipping_profile_id: shippingProfile.id,
       options: [{ title: "Size", values: ["30 mL"] }],
@@ -233,7 +233,7 @@ export default async function seed_products({
       thumbnail: PRODUCT_IMAGE,
       images: [{ url: PRODUCT_IMAGE }],
       description:
-        "Ten 30 mL sterile vials in bulk. Best value for ongoing protocols or resellers — save $31 versus single vials. Priority shipping included. Every vial individually sealed and third-party lab tested.",
+        "Ten 30 mL sterile vials in bulk — the best value for high-volume or repeat use, and for resellers. Save $31 versus single vials. Priority shipping included. Every vial individually sealed and third-party lab tested.",
       status: ProductStatus.PUBLISHED,
       shipping_profile_id: shippingProfile.id,
       options: [{ title: "Size", values: ["10 × 30 mL"] }],

@@ -143,7 +143,7 @@ const PureBacLanding = ({ products }: Props) => {
             <p className="mt-4 text-[#41506a] leading-relaxed">
               Anyone can print “sterile” on a label. We batch-test through{" "}
               <strong>Vanguard Laboratory</strong>, an independent third party,
-              so you can trust exactly what you’re putting into your protocol.
+              so you can trust exactly what’s in every vial.
             </p>
             <div className="mt-6 flex gap-3">
               <LocalizedClientLink
@@ -192,7 +192,7 @@ const PureBacLanding = ({ products }: Props) => {
         <div className="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-1">
           {[
             ["Preservative", "0.9% Benzyl Alcohol (USP)"],
-            ["Water grade", "USP Sterile Water for Injection"],
+            ["Water grade", "USP-grade sterile water"],
             ["Stopper", "20mm bromobutyl, sterile flip-top cap"],
             ["Storage temp", "20–25°C (room temperature)"],
             ["Shelf life", "24 months sealed"],
@@ -221,11 +221,11 @@ const PureBacLanding = ({ products }: Props) => {
             {[
               [
                 "What is reconstitution water used for?",
-                "Reconstitution water is sterile water containing 0.9% benzyl alcohol, a preservative that inhibits bacterial growth. It is commonly used in research settings to reconstitute lyophilized (freeze-dried) compounds.",
+                "Reconstitution water is sterile water containing 0.9% benzyl alcohol, a preservative that inhibits bacterial growth. In research and laboratory settings it is used to reconstitute peptides and proteins and other lyophilized (freeze-dried) compounds.",
               ],
               [
                 "How long is it good for after opening?",
-                "The 0.9% benzyl alcohol preservative allows a 30 mL multi-dose vial to be used safely for up to 28 days after the first puncture when stored at room temperature.",
+                "The 0.9% benzyl alcohol preservative keeps a 30 mL vial stable for up to 28 days after it is first opened, when stored at room temperature.",
               ],
               [
                 "How is my order shipped?",
