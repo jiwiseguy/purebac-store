@@ -196,7 +196,7 @@ const PureBacLanding = ({ products }: Props) => {
             ["Stopper", "20mm bromobutyl, sterile flip-top cap"],
             ["Storage temp", "20–25°C (room temperature)"],
             ["Shelf life", "24 months sealed"],
-            ["After opening", "Multi-dose rated 28 days"],
+            ["After opening", "Multiple-use, up to 28 days"],
           ].map(([k, v]) => (
             <div
               key={k}
@@ -219,10 +219,6 @@ const PureBacLanding = ({ products }: Props) => {
           </h2>
           <div className="space-y-4">
             {[
-              [
-                "What is reconstitution water used for?",
-                "Reconstitution water is sterile water containing 0.9% benzyl alcohol, a preservative that inhibits bacterial growth. In research and laboratory settings it is used to reconstitute peptides and proteins and other lyophilized (freeze-dried) compounds.",
-              ],
               [
                 "How long is it good for after opening?",
                 "The 0.9% benzyl alcohol preservative keeps a 30 mL vial stable for up to 28 days after it is first opened, when stored at room temperature.",

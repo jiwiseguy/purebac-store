@@ -217,7 +217,7 @@ export default async function seed_products({
       thumbnail: PRODUCT_IMAGE,
       images: [{ url: PRODUCT_IMAGE }],
       description:
-        "Pharmaceutical-grade reconstitution water with 0.9% benzyl alcohol — used to reconstitute peptides and proteins in research and laboratory settings. Multi-dose 30 mL vial rated for 28 days after opening. USP-compliant and third-party lab tested for purity and consistency.",
+        "Pharmaceutical-grade reconstitution water with 0.9% benzyl alcohol — used to reconstitute peptides and proteins in research and laboratory settings. Multiple-use 30 mL vial, stable for up to 28 days after opening. USP-compliant and third-party lab tested for purity and consistency.",
       status: ProductStatus.PUBLISHED,
       shipping_profile_id: shippingProfile.id,
       options: [{ title: "Size", values: ["30 mL"] }],

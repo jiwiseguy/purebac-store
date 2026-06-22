@@ -6,7 +6,7 @@ export default async function Footer() {
   return (
     <footer className="border-t border-[#dce8f8] bg-[#f5f9ff] w-full">
       <div className="content-container flex flex-col w-full">
-        <div className="grid grid-cols-1 sm:grid-cols-4 gap-10 py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-5 gap-10 py-16">
           <div className="sm:col-span-2 max-w-sm">
             <LocalizedClientLink
               href="/"
@@ -34,10 +34,21 @@ export default async function Footer() {
           <div className="flex flex-col gap-y-2">
             <span className="text-sm font-semibold text-[#0d1f3c]">Company</span>
             <ul className="grid grid-cols-1 gap-2 text-sm text-[#5a6b85]">
+              <li><LocalizedClientLink className="hover:text-[#1e6fbe]" href="/contact">Contact Us</LocalizedClientLink></li>
               <li><LocalizedClientLink className="hover:text-[#1e6fbe]" href="/#lab-results">Lab Results</LocalizedClientLink></li>
               <li><LocalizedClientLink className="hover:text-[#1e6fbe]" href="/#faq">FAQ</LocalizedClientLink></li>
               <li><a className="hover:text-[#1e6fbe]" href="mailto:support@purebac.com">support@purebac.com</a></li>
               <li><a className="hover:text-[#1e6fbe]" href="tel:+18005550198">(800) 555-0198</a></li>
+            </ul>
+          </div>
+
+          <div className="flex flex-col gap-y-2">
+            <span className="text-sm font-semibold text-[#0d1f3c]">Legal</span>
+            <ul className="grid grid-cols-1 gap-2 text-sm text-[#5a6b85]">
+              <li><LocalizedClientLink className="hover:text-[#1e6fbe]" href="/privacy-policy">Privacy Policy</LocalizedClientLink></li>
+              <li><LocalizedClientLink className="hover:text-[#1e6fbe]" href="/terms-of-service">Terms of Service</LocalizedClientLink></li>
+              <li><LocalizedClientLink className="hover:text-[#1e6fbe]" href="/refund-policy">Refund Policy</LocalizedClientLink></li>
+              <li><LocalizedClientLink className="hover:text-[#1e6fbe]" href="/shipping-policy">Shipping Policy</LocalizedClientLink></li>
             </ul>
           </div>
         </div>
