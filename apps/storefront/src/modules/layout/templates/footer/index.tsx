@@ -28,6 +28,7 @@ export default async function Footer() {
               <li><LocalizedClientLink className="hover:text-[#1e6fbe]" href="/store">All Products</LocalizedClientLink></li>
               <li><LocalizedClientLink className="hover:text-[#1e6fbe]" href="/products/bac-water-30ml">30 mL Vial</LocalizedClientLink></li>
               <li><LocalizedClientLink className="hover:text-[#1e6fbe]" href="/products/bac-water-30ml-10pack">10-Pack Bundle</LocalizedClientLink></li>
+              <li><LocalizedClientLink className="hover:text-[#1e6fbe]" href="/products/bac-water-30ml-25pack">25-Pack Bundle</LocalizedClientLink></li>
             </ul>
           </div>
 

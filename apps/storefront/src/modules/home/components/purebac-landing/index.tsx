@@ -14,11 +14,17 @@ const BULLETS: Record<string, string[]> = {
   "bac-water-30ml": [
     "0.9% benzyl alcohol",
     "30 mL multiple-use vial",
-    "Safe 28 days post-open",
+    "Stable up to 28 days open",
     "Third-party lab tested",
   ],
   "bac-water-30ml-10pack": [
     "10 × 30 mL sterile vials",
+    "Priority shipping included",
+    "Bulk savings",
+    "Third-party lab tested",
+  ],
+  "bac-water-30ml-25pack": [
+    "25 × 30 mL sterile vials",
     "Priority shipping included",
     "Lowest per-vial price",
     "Third-party lab tested",
@@ -62,7 +68,7 @@ const PureBacLanding = ({ products }: Props) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {sorted.map((p) => {
             const popular = p.handle === "bac-water-30ml"
             const price = money(
@@ -99,7 +105,7 @@ const PureBacLanding = ({ products }: Props) => {
                 </p>
                 <div className="mt-4 flex items-baseline gap-1">
                   <span className="text-3xl font-bold text-[#0d1f3c]">{price}</span>
-                  {p.handle !== "bac-water-30ml-10pack" && (
+                  {p.handle === "bac-water-30ml" && (
                     <span className="text-sm text-[#6a8aaa]">/ vial</span>
                   )}
                 </div>

@@ -19,7 +19,7 @@ import {
 import { PRODUCT_METADATA_MODULE } from "../modules/product-metadata"
 import ProductMetadataModuleService from "../modules/product-metadata/service"
 
-const PUREBAC_HANDLES = ["bac-water-30ml", "bac-water-30ml-10pack"]
+const PUREBAC_HANDLES = ["bac-water-30ml", "bac-water-30ml-10pack", "bac-water-30ml-25pack"]
 
 export default async function seed_products({
   container,
@@ -242,6 +242,22 @@ export default async function seed_products({
       ],
       sales_channels: [{ id: defaultSalesChannel.id }],
     },
+    {
+      title: "25-Pack Bundle — 30 mL Vials",
+      handle: "bac-water-30ml-25pack",
+      category_ids: [category.id],
+      thumbnail: PRODUCT_IMAGE,
+      images: [{ url: PRODUCT_IMAGE }],
+      description:
+        "Twenty-five 30 mL sterile vials — the best per-vial value for high-volume or repeat use, and for resellers. Priority shipping included. Every vial individually sealed and third-party lab tested.",
+      status: ProductStatus.PUBLISHED,
+      shipping_profile_id: shippingProfile.id,
+      options: [{ title: "Size", values: ["25 × 30 mL"] }],
+      variants: [
+        { title: "25 × 30 mL", sku: "PUREBAC-30ML-25PK", options: { Size: "25 × 30 mL" }, manage_inventory: true, prices: [{ amount: 350, currency_code: "usd" }] },
+      ],
+      sales_channels: [{ id: defaultSalesChannel.id }],
+    },
   ]
 
   const toCreate = products.filter((p) => !existingHandles.has(p.handle))
@@ -301,6 +317,7 @@ export default async function seed_products({
   const fillByHandle: Record<string, string> = {
     "bac-water-30ml": "30 mL per vial",
     "bac-water-30ml-10pack": "10 × 30 mL vials",
+    "bac-water-30ml-25pack": "25 × 30 mL vials",
   }
 
   const existingSpecs = await metaService.listProductSpecs()
