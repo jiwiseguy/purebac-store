@@ -8,6 +8,7 @@ loadEnv(process.env.NODE_ENV || 'development', process.cwd())
 const hasR2 = !!process.env.R2_BUCKET && !!process.env.R2_ACCESS_KEY_ID
 const hasResend = !!process.env.RESEND_API_KEY
 const hasPaypal = !!process.env.PAYPAL_CLIENT_ID && !!process.env.PAYPAL_CLIENT_SECRET
+const hasShippo = !!process.env.SHIPPO_API_TOKEN
 
 const paymentProviders: any[] = [
   {
@@ -57,6 +58,37 @@ if (hasR2) {
             region: "auto",
             bucket: process.env.R2_BUCKET,
             endpoint: process.env.R2_ENDPOINT,
+          },
+        },
+      ],
+    },
+  })
+}
+
+if (hasShippo) {
+  // Declaring the fulfillment module means we must re-list the built-in manual
+  // provider alongside Shippo so existing flat-rate options keep working.
+  modules.push({
+    resolve: "@medusajs/medusa/fulfillment",
+    options: {
+      providers: [
+        { resolve: "@medusajs/fulfillment-manual", id: "manual" },
+        {
+          resolve: "./src/providers/shippo-fulfillment",
+          id: "shippo",
+          options: {
+            api_token: process.env.SHIPPO_API_TOKEN,
+            from_address: {
+              name: process.env.SHIPPO_FROM_NAME,
+              company: process.env.SHIPPO_FROM_COMPANY,
+              street1: process.env.SHIPPO_FROM_STREET1,
+              city: process.env.SHIPPO_FROM_CITY,
+              state: process.env.SHIPPO_FROM_STATE,
+              zip: process.env.SHIPPO_FROM_ZIP,
+              country: process.env.SHIPPO_FROM_COUNTRY || "US",
+              phone: process.env.SHIPPO_FROM_PHONE,
+              email: process.env.SHIPPO_FROM_EMAIL,
+            },
           },
         },
       ],
