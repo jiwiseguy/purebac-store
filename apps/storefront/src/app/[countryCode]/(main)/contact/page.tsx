@@ -22,10 +22,10 @@ export default function ContactPage() {
             Email
           </div>
           <a
-            href="mailto:support@purebac.com"
+            href="mailto:purebackwater1@gmail.com"
             className="mt-1 block text-base font-semibold text-[#1e6fbe] hover:underline"
           >
-            support@purebac.com
+            purebackwater1@gmail.com
           </a>
           <p className="mt-2 text-sm text-[#5a6b85]">
             Best for order questions and COA requests. We reply within 1 business
@@ -57,10 +57,10 @@ export default function ContactPage() {
           Reselling or buying in volume? Email us for bulk pricing.
         </p>
         <a
-          href="mailto:support@purebac.com"
+          href="mailto:purebackwater1@gmail.com"
           className="mt-5 inline-block rounded-full bg-[#1e6fbe] px-7 py-3 text-sm font-semibold hover:bg-[#155a9e]"
         >
-          Email support@purebac.com
+          Email purebackwater1@gmail.com
         </a>
       </div>
 

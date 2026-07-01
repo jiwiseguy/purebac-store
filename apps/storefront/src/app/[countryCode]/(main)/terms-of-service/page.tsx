@@ -74,8 +74,8 @@ export default function TermsOfServicePage() {
         <H2>Contact</H2>
         <p>
           Questions about these Terms? Email{" "}
-          <a className="text-[#1e6fbe] hover:underline" href="mailto:support@purebac.com">
-            support@purebac.com
+          <a className="text-[#1e6fbe] hover:underline" href="mailto:purebackwater1@gmail.com">
+            purebackwater1@gmail.com
           </a>
           .
         </p>

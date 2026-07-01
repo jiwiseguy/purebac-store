@@ -54,8 +54,8 @@ export default function ShippingPolicyPage() {
         <H2>Lost or delayed packages</H2>
         <p>
           If a package is lost or significantly delayed in transit, email{" "}
-          <a className="text-[#1e6fbe] hover:underline" href="mailto:support@purebac.com">
-            support@purebac.com
+          <a className="text-[#1e6fbe] hover:underline" href="mailto:purebackwater1@gmail.com">
+            purebackwater1@gmail.com
           </a>{" "}
           and we&apos;ll work with the carrier to resolve it.
         </p>

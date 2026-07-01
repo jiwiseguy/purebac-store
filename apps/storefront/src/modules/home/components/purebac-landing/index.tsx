@@ -260,10 +260,10 @@ const PureBacLanding = ({ products }: Props) => {
           </p>
           <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-4 text-sm">
             <a
-              href="mailto:support@purebac.com"
+              href="mailto:purebackwater1@gmail.com"
               className="rounded-full bg-[#1e6fbe] px-7 py-3 font-semibold hover:bg-[#155a9e]"
             >
-              support@purebac.com
+              purebackwater1@gmail.com
             </a>
             <a href="tel:+18005550198" className="font-semibold text-white/90 hover:text-white">
               (800) 555-0198

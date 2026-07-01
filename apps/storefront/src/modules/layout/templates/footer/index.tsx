@@ -38,7 +38,7 @@ export default async function Footer() {
               <li><LocalizedClientLink className="hover:text-[#1e6fbe]" href="/contact">Contact Us</LocalizedClientLink></li>
               <li><LocalizedClientLink className="hover:text-[#1e6fbe]" href="/#lab-results">Lab Results</LocalizedClientLink></li>
               <li><LocalizedClientLink className="hover:text-[#1e6fbe]" href="/#faq">FAQ</LocalizedClientLink></li>
-              <li><a className="hover:text-[#1e6fbe]" href="mailto:support@purebac.com">support@purebac.com</a></li>
+              <li><a className="hover:text-[#1e6fbe]" href="mailto:purebackwater1@gmail.com">purebackwater1@gmail.com</a></li>
               <li><a className="hover:text-[#1e6fbe]" href="tel:+18005550198">(800) 555-0198</a></li>
             </ul>
           </div>

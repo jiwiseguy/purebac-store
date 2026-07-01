@@ -57,8 +57,8 @@ export default function RefundPolicyPage() {
         <H2>How to request</H2>
         <p>
           Email{" "}
-          <a className="text-[#1e6fbe] hover:underline" href="mailto:support@purebac.com">
-            support@purebac.com
+          <a className="text-[#1e6fbe] hover:underline" href="mailto:purebackwater1@gmail.com">
+            purebackwater1@gmail.com
           </a>{" "}
           with your order number and the reason for the return, and we&apos;ll
           guide you through the next steps.
